@@ -15,15 +15,15 @@ void loadStudents()
 
     fp = fopen("students.txt", "r");
 
-    if(fp == NULL)
+    if (fp == NULL)
     {
-        return;  
+        return;
     }
 
-    while(fscanf(fp,"%s %d %f",
-        s[sr_no].name,
-        &s[sr_no].roll,
-        &s[sr_no].per) != EOF)
+    while (fscanf(fp, "%s %d %f",
+                  s[sr_no].name,
+                  &s[sr_no].roll,
+                  &s[sr_no].per) != EOF)
     {
         sr_no++;
     }
@@ -76,32 +76,63 @@ void displayStudent()
 {
     FILE *fp;
     fp = fopen("students.txt", "r");
-     if(fp == NULL)
+    if (fp == NULL)
     {
         printf("File not found");
-        return;  
+        return;
     }
-int i = 0;
-printf("\nName\t\tRoll\t\tPercentage\n");
-printf("-------------------------------------\n");
-while (i < 100 &&fscanf(fp, "%s %d %f",
-              s[i].name,
-              &s[i].roll,
-              &s[i].per) == 3)
-{
-    printf("%-15s\t%-10d\t%-10.2f\n",
-           s[i].name,
-           s[i].roll,
-           s[i].per);
-    i++;
-}
-        
-  fclose(fp);
-  }
+    int i = 0;
+    printf("\nName\t\tRoll\t\tPercentage\n");
+    printf("-------------------------------------\n");
+    while (i < 100 && fscanf(fp, "%s %d %f",
+                             s[i].name,
+                             &s[i].roll,
+                             &s[i].per) == 3)
+    {
+        printf("%-15s\t%-10d\t%-10.2f\n",
+               s[i].name,
+               s[i].roll,
+               s[i].per);
+        i++;
+    }
 
+    fclose(fp);
+}
 void searchStudent()
 {
-    printf("Search Student Details");
+
+    int i=0;
+    int roll;
+    printf("Enter roll number to search: ");
+    scanf("%d", &roll);
+    FILE *fp;
+    fp = fopen("students.txt", "r");
+    if (fp == NULL)
+    {
+        printf("File not Found\n");
+        return;
+    }
+    while (i < 100 && fscanf(fp, "%s %d %f",
+                             s[i].name,
+                             &s[i].roll,
+                             &s[i].per) == 3)
+    {
+        if (s[i].roll == roll)
+        {
+            printf("\nName\t\tRoll\t\tPercentage\n");
+            printf("-------------------------------------\n");
+            printf("%-15s\t%-10d\t%-10.2f\n",
+                   s[i].name,
+                   s[i].roll,
+                   s[i].per);
+                    fclose(fp);
+
+            return;
+        }
+        i++;
+    } 
+    printf("No such record\n");
+    fclose(fp);
 }
 void updateStudent()
 {
