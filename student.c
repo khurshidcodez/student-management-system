@@ -342,7 +342,7 @@ int main()
             printf("\nInvalid choice");
         }
 
-        printf("Do you want to perform another operation? (y/n): ");
+        printf("\nDo you want to perform another operation? (y/n): ");
         scanf(" %c", &ch);
     } while (ch == 'y' || ch == 'Y');
 
